@@ -1,0 +1,25 @@
+Pre-deployment notes:
+
+1. uncomment line that stores NFT in /deployment/nft.json
+
+Deployment process: 
+
+1. deploy all Storages
+- npx hardhat run scripts/deploy/storage/deploy-storage-collective-units-only-1st-part.ts --network sepolia
+- npx hardhat run scripts/deploy/storage/deploy-storage-collective-units-only-2nd-part.ts --network sepolia
+- npx hardhat run scripts/deploy/storage/deploy-storage-collective.ts --network sepolia
+2. deploy all Facades
+- npx hardhat run scripts/deploy/facades/deploy-storage-facades-collective.ts --network sepolia
+3. deploy StorageFacadeManager
+- npx hardhat run scripts/deploy/storageFacadeManager.ts --network sepolia
+4. deploy NFTMetadata
+- npx hardhat run scripts/deploy/nftMetadata.ts --network sepolia
+3. deploy Reservation
+- npx hardhat run scripts/deploy/reservations/generateReservations.ts --network sepolia
+- npx hardhat run scripts/deploy/reservations/deploy.ts --network sepolia
+4. deploy Invitations
+- npx hardhat run scripts/deploy/invitations/generateInvitations.ts --network sepolia
+- npx hardhat run scripts/deploy/invitations/deploy.ts --network sepolia
+5. deploy the NFT
+- npx hardhat run scripts/deploy/NFT.ts --network sepolia
+6. changeOwnership: Reservations, Invitations, Facades, NFT
