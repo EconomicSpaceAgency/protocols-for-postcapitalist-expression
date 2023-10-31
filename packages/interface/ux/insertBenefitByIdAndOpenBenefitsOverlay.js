@@ -73,6 +73,7 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
 
             let wallet = localStorage.getItem("wallet");
             let existingOrder = await getOrderByWallet(wallet);
+            let orderUpdateOrPost;
             if(existingOrder){
                 console.log("existing order: ", existingOrder);
                 sendButton.textContent = "Update ➹";
@@ -201,18 +202,16 @@ const insertBenefitByIdAndOpenBenefitsOverlay = async function(content) {
             dl.href = downloadURL;
         }
 
-        if (localStorage.getItem('pbi') == false){
+        if (localStorage.getItem('pbi') == false || localStorage.getItem('alreadyReceivedPhysicalBook' == 'true')){
             console.log('pbi: ', localStorage.getItem('pbi'));
             modifyBenefits(); 
         }
         // enter the discourse button
     }
     let enterTheDiscourseButton = document.getElementById('enterTheDiscourseButton');
-    console.log('fetched enterTheDiscourseButton', enterTheDiscourseButton);
     if(enterTheDiscourseButton){
         enterTheDiscourseButton.addEventListener('click', function(){
-            console.log('Last step was clicked!');
-            window.open('https://discord.gg/phazawkuSq', '_blank').focus();
+            window.open('https://discord.gg/MWApYu2MR8', '_blank').focus();
         });
     }
 
